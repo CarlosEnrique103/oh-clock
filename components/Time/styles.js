@@ -23,6 +23,7 @@ const styles = (orientation) =>
 		time: {
 			color: colors.white,
 			fontSize: 200,
+			fontFamily: "FjallaOne",
 		},
 		line: {
 			position: "absolute",
@@ -31,6 +32,26 @@ const styles = (orientation) =>
 			top: "50%",
 			backgroundColor: colors.bgApp,
 			transform: [{ translateY: 4 }],
+		},
+		second: {
+			width: 70,
+			height: 70,
+			borderRadius: 10,
+			backgroundColor: colors.bgTime,
+			alignItems: "center",
+			justifyContent: "center",
+			position: "absolute",
+			bottom: 10,
+			right: 0,
+			transform: [{ translateX: 35 }],
+			borderWidth: 1,
+			borderColor: colors.white,
+		},
+		timeSmall: {
+			position: "absolute",
+			color: colors.white,
+			fontSize: 40,
+			fontFamily: "FjallaOne",
 		},
 	});
 export default styles;

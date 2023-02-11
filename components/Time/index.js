@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import AppContext from "../../store/App/Context";
 import DateTimeContext from "../../store/DateTime/Context";
@@ -7,21 +7,46 @@ import Styles from "./styles";
 const Time = () => {
 	const { time } = useContext(DateTimeContext);
 	const { orientation } = useContext(AppContext);
-
-	console.log({ orientation }, "From values");
+	const [hour, setHour] = useState("00");
+	const [minute, setMinute] = useState("00");
+	const [second, setSecond] = useState("00");
 	const styles = Styles(orientation);
 
-	console.log({ styles });
+	useEffect(() => {
+		const idInterval = setInterval(() => {
+			const now = new Date(Date.now());
+			let hour = now.getHours();
+			let minute = now.getMinutes();
+			let second = now.getSeconds();
+			if (time.format === "12") {
+				if (hour >= 12) {
+					hour = hour % 12;
+					if (hour === 0) {
+						hour = 12;
+					}
+				}
+			}
+			hour = (hour < 10 ? "0" : "") + hour;
+			minute = (minute < 10 ? "0" : "") + minute;
+			second = (second < 10 ? "0" : "") + second;
+			setHour(hour);
+			setMinute(minute);
+			setSecond(second);
+		}, 1000);
+
+		return () => clearInterval(idInterval);
+	}, [time.format]);
 
 	return (
 		<View style={styles.container}>
 			<View style={styles.card}>
-				<Text style={styles.time}>{time.hour}</Text>
-				<View style={styles.line}></View>
+				<Text style={styles.time}>{hour}</Text>
 			</View>
 			<View style={styles.card}>
-				<Text style={styles.time}>{time.minutes}</Text>
-				<View style={styles.line}></View>
+				<Text style={styles.time}>{minute}</Text>
+				<View style={styles.second}>
+					<Text style={styles.timeSmall}>{second}</Text>
+				</View>
 			</View>
 		</View>
 	);

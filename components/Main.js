@@ -6,6 +6,7 @@ import Time from "./Time";
 import AppContext from "./../store/App/Context";
 import colors from "../constants/colors";
 import { useFonts } from "expo-font";
+import DateTimeContext from "../store/DateTime/Context";
 
 const Main = () => {
 	const { changeOrientation } = useContext(AppContext);

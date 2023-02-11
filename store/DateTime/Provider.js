@@ -3,29 +3,37 @@ import DateTimeContext from "./Context";
 
 const initialState = {
 	time: {
-		hour: "00",
-		minutes: "00",
-		seconds: "00",
-		format: "24",
+		format: "12",
 	},
 	date: "2023-14-02",
 };
 
 const dateTimeReducer = (state, action) => {
+	if (action.type === "CHANGE") {
+		return {
+			...state,
+			time: {
+				format: state.time.format === "12" ? "24" : "12",
+			},
+		};
+	}
 	return state;
 };
 
 const DateTimeProvider = ({ children }) => {
 	const [dateTimeState, dispatch] = useReducer(dateTimeReducer, initialState);
 
+	const changeFormat = () => {
+		console.log("se llamo");
+		dispatch({ type: "CHANGE" });
+	};
+
 	const value = {
 		time: {
-			hour: dateTimeState.time.hour,
-			minutes: dateTimeState.time.minutes,
-			seconds: dateTimeState.time.seconds,
 			format: dateTimeState.time.format,
 		},
 		date: "2023-14-02",
+		changeFormat: changeFormat,
 	};
 
 	return (
