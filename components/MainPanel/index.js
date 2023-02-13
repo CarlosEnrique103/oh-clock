@@ -7,9 +7,21 @@ import { useContext } from "react";
 import DateTimeContext from "../../store/DateTime/Context";
 import UIContext from "../../store/UI/Context";
 
-const MainPanel = ({ onShow, onPanelNumber }) => {
+const MainPanel = ({ onShow, onPanelNumber, onPlaySound, onStopSound }) => {
 	const { time } = useContext(DateTimeContext);
 	const { buttons, activateButton } = useContext(UIContext);
+
+	const handleActivateSound = async () => {
+		activateButton("sound");
+		if (buttons.sound) {
+			await onStopSound();
+			return;
+		}
+		await onPlaySound();
+	};
+
+	console.log({ buttons });
+
 	return (
 		<ContainerPanel type='primary' style={styles.container} onEvent={onShow}>
 			<Pressable
@@ -17,11 +29,11 @@ const MainPanel = ({ onShow, onPanelNumber }) => {
 					styles.button,
 					{
 						backgroundColor: buttons.sound
-							? colors.bgItemBar
-							: colors.bgItemBarEnabled,
+							? colors.bgItemBarEnabled
+							: colors.bgItemBar,
 					},
 				]}
-				onPress={() => activateButton("sound")}
+				onPress={handleActivateSound}
 			>
 				<Feather name='volume-2' size={22} color={colors.white} />
 			</Pressable>

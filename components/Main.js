@@ -12,12 +12,14 @@ import ColorsPanel from "./ColorsPanel";
 import DateTimePanel from "./DateTimePanel";
 import ImagesPanel from "./ImagesPanel";
 import UIContext from "../store/UI/Context";
+import { Audio } from "expo-av";
 
 const Main = () => {
 	const { changeOrientation } = useContext(AppContext);
 	const { imageBg } = useContext(UIContext);
 	const [showPanel, setShowPanel] = useState(false);
 	const [panelNumber, setPanelNumber] = useState(0);
+	const [sound, setSound] = useState();
 
 	const [fontsLoaded] = useFonts({
 		FjallaOne: require("./../assets/fonts/FjallaOne.ttf"),
@@ -31,6 +33,25 @@ const Main = () => {
 	const handleShowPanel = () => setShowPanel((prev) => !prev);
 	const handleBackPanel = () => setPanelNumber(0);
 	const handlePanelNumber = (number) => setPanelNumber(number);
+
+	const handlePlaySound = async () => {
+		try {
+			const { sound } = await Audio.Sound.createAsync(
+				require("./../assets/audio/clock.mp3")
+			);
+			setSound(sound);
+			await sound.playAsync();
+			sound.setOnPlaybackStatusUpdate(async (status) => {
+				if (status.didJustFinish) {
+					await handlePlaySound();
+				}
+			});
+		} catch (error) {
+			console.log({ error });
+		}
+	};
+
+	const handleStopSound = async () => await sound.stopAsync();
 
 	useEffect(() => {
 		const unlockOrientation = async () => {
@@ -70,6 +91,8 @@ const Main = () => {
 								<MainPanel
 									onShow={handleShowPanel}
 									onPanelNumber={handlePanelNumber}
+									onPlaySound={handlePlaySound}
+									onStopSound={handleStopSound}
 								/>
 							)}
 							{panelNumber === 1 && <DateTimePanel onBack={handleBackPanel} />}
