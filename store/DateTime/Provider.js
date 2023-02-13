@@ -24,7 +24,6 @@ const DateTimeProvider = ({ children }) => {
 	const [dateTimeState, dispatch] = useReducer(dateTimeReducer, initialState);
 
 	const changeFormat = () => {
-		console.log("se llamo");
 		dispatch({ type: "CHANGE" });
 	};
 

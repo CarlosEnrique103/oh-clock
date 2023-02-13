@@ -1,7 +1,7 @@
 const colors = {
 	bgApp: "#000",
 	bgBar: "#373737",
-	bgItemBar: "#0888FD",
+	bgItemBar: "#222121",
 	bgItemBarDisabled: "#746D6D",
 	bgTime: "#1a1a1a",
 	circle1: "#9B5DE5",

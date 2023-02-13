@@ -2,15 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import AppContext from "../../store/App/Context";
 import DateTimeContext from "../../store/DateTime/Context";
+import UIContext from "../../store/UI/Context";
+
 import Styles from "./styles";
 
 const Time = () => {
 	const { time } = useContext(DateTimeContext);
+	const { timeColor } = useContext(UIContext);
 	const { orientation } = useContext(AppContext);
 	const [hour, setHour] = useState("00");
 	const [minute, setMinute] = useState("00");
 	const [second, setSecond] = useState("00");
-	const styles = Styles(orientation);
+	const styles = Styles(orientation, timeColor);
 
 	useEffect(() => {
 		const idInterval = setInterval(() => {

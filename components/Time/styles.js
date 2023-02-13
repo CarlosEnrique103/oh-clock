@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
 import colors from "./../../constants/colors";
 
-const styles = (orientation) =>
+const styles = (orientation, timeColor) =>
 	StyleSheet.create({
 		container: {
-			flex: 1,
 			flexDirection: orientation === "PORTRAIT" ? "column" : "row",
 			alignItems: "center",
 			justifyContent: "center",
@@ -21,7 +20,7 @@ const styles = (orientation) =>
 			position: "relative",
 		},
 		time: {
-			color: colors.white,
+			color: timeColor,
 			fontSize: 200,
 			fontFamily: "FjallaOne",
 		},
@@ -41,15 +40,15 @@ const styles = (orientation) =>
 			alignItems: "center",
 			justifyContent: "center",
 			position: "absolute",
-			bottom: 10,
+			bottom: 50,
 			right: 0,
 			transform: [{ translateX: 35 }],
 			borderWidth: 1,
-			borderColor: colors.white,
+			borderColor: timeColor,
 		},
 		timeSmall: {
 			position: "absolute",
-			color: colors.white,
+			color: timeColor,
 			fontSize: 40,
 			fontFamily: "FjallaOne",
 		},
