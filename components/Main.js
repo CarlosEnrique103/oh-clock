@@ -1,5 +1,5 @@
 import { useContext, useEffect, useCallback, useState, Fragment } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -11,9 +11,11 @@ import MainPanel from "./MainPanel";
 import ColorsPanel from "./ColorsPanel";
 import DateTimePanel from "./DateTimePanel";
 import ImagesPanel from "./ImagesPanel";
+import UIContext from "../store/UI/Context";
 
 const Main = () => {
 	const { changeOrientation } = useContext(AppContext);
+	const { imageBg } = useContext(UIContext);
 	const [showPanel, setShowPanel] = useState(false);
 	const [panelNumber, setPanelNumber] = useState(0);
 
@@ -25,6 +27,10 @@ const Main = () => {
 			await SplashScreen.hideAsync();
 		}
 	}, [fontsLoaded]);
+
+	const handleShowPanel = () => setShowPanel((prev) => !prev);
+	const handleBackPanel = () => setPanelNumber(0);
+	const handlePanelNumber = (number) => setPanelNumber(number);
 
 	useEffect(() => {
 		const unlockOrientation = async () => {
@@ -41,44 +47,49 @@ const Main = () => {
 		return () => subscription.remove();
 	}, []);
 
+	useEffect(() => {
+		console.log("cambio valor");
+	}, [imageBg]);
+
 	if (!fontsLoaded) {
 		return null;
 	}
 
-	const handleShowPanel = () => setShowPanel((prev) => !prev);
-	const handleBackPanel = () => setPanelNumber(0);
-	const handlePanelNumber = (number) => setPanelNumber(number);
-
 	return (
-		<Pressable
-			style={styles.container}
-			onLayout={onLayoutRootView}
-			onPress={handleShowPanel}
+		<ImageBackground
+			source={imageBg}
+			style={{ flex: 1, backgroundColor: colors.bgApp }}
+			resizeMode='cover'
 		>
-			<Container>
-				<Time />
-				{showPanel && (
-					<Fragment>
-						{panelNumber === 0 && (
-							<MainPanel
-								onShow={handleShowPanel}
-								onPanelNumber={handlePanelNumber}
-							/>
-						)}
-						{panelNumber === 1 && <DateTimePanel onBack={handleBackPanel} />}
-						{panelNumber === 2 && <ColorsPanel onBack={handleBackPanel} />}
-						{panelNumber === 3 && <ImagesPanel onBack={handleBackPanel} />}
-					</Fragment>
-				)}
-			</Container>
-		</Pressable>
+			<Pressable
+				style={styles.container}
+				onLayout={onLayoutRootView}
+				onPress={handleShowPanel}
+			>
+				<Container>
+					<Time />
+					{showPanel && (
+						<Fragment>
+							{panelNumber === 0 && (
+								<MainPanel
+									onShow={handleShowPanel}
+									onPanelNumber={handlePanelNumber}
+								/>
+							)}
+							{panelNumber === 1 && <DateTimePanel onBack={handleBackPanel} />}
+							{panelNumber === 2 && <ColorsPanel onBack={handleBackPanel} />}
+							{panelNumber === 3 && <ImagesPanel onBack={handleBackPanel} />}
+						</Fragment>
+					)}
+				</Container>
+			</Pressable>
+		</ImageBackground>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: colors.bgApp,
 		alignItems: "center",
 		justifyContent: "center",
 	},

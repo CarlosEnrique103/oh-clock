@@ -7,7 +7,6 @@ const styles = (color) =>
 			width: 25,
 			borderRadius: 12.5,
 			backgroundColor: color,
-			borderWidth: 1,
 		},
 	});
 

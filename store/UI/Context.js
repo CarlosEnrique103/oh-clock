@@ -7,7 +7,9 @@ const UIContext = createContext({
 		time: false,
 		date: false,
 	},
+	imageBg: require("./../../assets/backgrounds/0.jpg"),
 	changeColor: () => {},
+	changeImage: () => {},
 	activateButton: () => {},
 });
 
