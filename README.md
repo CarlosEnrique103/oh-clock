@@ -1,6 +1,6 @@
 ## 👨🏻‍💻 Project
 
-- App that allows you to see the current time, through a super friendly interface, as well as some functions that allow you to customize the app.
+-  [App](exp://exp.host/@juancarlosenrique103/oh-clock?release-channel=default). that allows you to see the current time, through a super friendly interface, as well as some functions that allow you to customize the [app](exp://exp.host/@juancarlosenrique103/oh-clock?release-channel=default).
 
 ## 🖥 Technologies & Languages
 
@@ -18,7 +18,11 @@
 
 ## 🖥  View
 ![plot](./assets/docs/main-screen.png)
-![plot](./assets//docs/color-panel.png)
+![plot](./assets/docs/color-panel.png)
+
+## 🖥  Live
+![plot](./assets/docs//qr.svg)
+
 
 
 ### Happy Coding! 🚀
