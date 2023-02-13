@@ -4,16 +4,27 @@ import DateTimeContext from "./Context";
 const initialState = {
 	time: {
 		format: "12",
+		value: "00:00",
 	},
-	date: "2023-14-02",
 };
 
 const dateTimeReducer = (state, action) => {
-	if (action.type === "CHANGE") {
+	if (action.type === "CHANGE_FORMAT") {
 		return {
 			...state,
 			time: {
+				...state.time,
 				format: state.time.format === "12" ? "24" : "12",
+			},
+		};
+	}
+
+	if (action.type === "UPDATE_TIME") {
+		return {
+			...state,
+			time: {
+				...state.time,
+				value: action.payload,
 			},
 		};
 	}
@@ -24,15 +35,17 @@ const DateTimeProvider = ({ children }) => {
 	const [dateTimeState, dispatch] = useReducer(dateTimeReducer, initialState);
 
 	const changeFormat = () => {
-		dispatch({ type: "CHANGE" });
+		dispatch({ type: "CHANGE_FORMAT" });
+	};
+
+	const updateTime = (value) => {
+		dispatch({ type: "UPDATE_TIME", payload: value });
 	};
 
 	const value = {
-		time: {
-			format: dateTimeState.time.format,
-		},
-		date: "2023-14-02",
+		time: dateTimeState.time,
 		changeFormat: changeFormat,
+		updateTime: updateTime,
 	};
 
 	return (

@@ -7,7 +7,7 @@ import UIContext from "../../store/UI/Context";
 import Styles from "./styles";
 
 const Time = () => {
-	const { time } = useContext(DateTimeContext);
+	const { time, updateTime } = useContext(DateTimeContext);
 	const { timeColor } = useContext(UIContext);
 	const { orientation } = useContext(AppContext);
 	const [hour, setHour] = useState("00");
@@ -35,6 +35,7 @@ const Time = () => {
 			setHour(hour);
 			setMinute(minute);
 			setSecond(second);
+			updateTime(`${hour}:${minute}`);
 		}, 1000);
 
 		return () => clearInterval(idInterval);
