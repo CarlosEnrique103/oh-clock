@@ -20,8 +20,6 @@ const MainPanel = ({ onShow, onPanelNumber, onPlaySound, onStopSound }) => {
 		await onPlaySound();
 	};
 
-	console.log({ buttons });
-
 	return (
 		<ContainerPanel type='primary' style={styles.container} onEvent={onShow}>
 			<Pressable
