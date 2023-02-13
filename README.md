@@ -1,4 +1,4 @@
-## 👩‍💻 project
+## 👨🏻‍💻 Project
 
 - App that allows you to see the current time, through a super friendly interface, as well as some functions that allow you to customize the app.
 
@@ -12,7 +12,7 @@
 ## 🛠 Installing
 
 ```
-> yarn 
+> yarn 👨🏻‍💻
 > yarn start
 ```
 
