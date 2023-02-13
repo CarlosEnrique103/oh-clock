@@ -6,6 +6,7 @@ const UIContext = createContext({
 		sound: false,
 		time: false,
 		date: false,
+		seconds: false,
 	},
 	imageBg: require("./../../assets/backgrounds/0.jpg"),
 	changeColor: () => {},

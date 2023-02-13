@@ -8,7 +8,7 @@ import Styles from "./styles";
 
 const Time = () => {
 	const { time, updateTime } = useContext(DateTimeContext);
-	const { timeColor } = useContext(UIContext);
+	const { timeColor, buttons } = useContext(UIContext);
 	const { orientation } = useContext(AppContext);
 	const [hour, setHour] = useState("00");
 	const [minute, setMinute] = useState("00");
@@ -48,9 +48,12 @@ const Time = () => {
 			</View>
 			<View style={styles.card}>
 				<Text style={styles.time}>{minute}</Text>
-				<View style={styles.second}>
-					<Text style={styles.timeSmall}>{second}</Text>
-				</View>
+
+				{buttons.seconds && (
+					<View style={styles.second}>
+						<Text style={styles.timeSmall}>{second}</Text>
+					</View>
+				)}
 			</View>
 		</View>
 	);

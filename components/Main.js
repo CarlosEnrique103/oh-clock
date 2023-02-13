@@ -1,5 +1,5 @@
 import { useContext, useEffect, useCallback, useState, Fragment } from "react";
-import { ImageBackground, Pressable, StyleSheet, View } from "react-native";
+import { ImageBackground, Pressable, StyleSheet } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
@@ -46,10 +46,6 @@ const Main = () => {
 
 		return () => subscription.remove();
 	}, []);
-
-	useEffect(() => {
-		console.log("cambio valor");
-	}, [imageBg]);
 
 	if (!fontsLoaded) {
 		return null;

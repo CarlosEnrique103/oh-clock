@@ -2,11 +2,12 @@ import { useReducer } from "react";
 import UIContext from "./Context";
 
 const initialState = {
-	timeColor: "#FFF",
+	timeColor: "#FFFFFF",
 	buttons: {
 		sound: false,
 		time: false,
 		date: false,
+		seconds: false,
 	},
 	imageBg: require("./../../assets/backgrounds/0.jpg"),
 };
@@ -20,7 +21,6 @@ const uiReducer = (state, action) => {
 	}
 
 	if (action.type === "CHANGE_IMAGE") {
-		console.log("llego con el payload", action.payload);
 		return {
 			...state,
 			imageBg: action.payload,

@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 import colors from "./../../constants/colors";
 
-const styles = (activeBtnTime, activeBtnDate) =>
+const styles = (activateBtnTime, activateBtnDate, activateBtnSec) =>
 	StyleSheet.create({
 		btnTime: {
 			padding: 4,
 			paddingHorizontal: 6,
-			backgroundColor: activeBtnTime
+			backgroundColor: activateBtnTime
 				? colors.bgItemBarEnabled
 				: colors.bgItemBarDisabled,
 			borderRadius: 4,
@@ -14,18 +14,31 @@ const styles = (activeBtnTime, activeBtnDate) =>
 		btnDate: {
 			padding: 4,
 			paddingHorizontal: 6,
-			backgroundColor: activeBtnDate
+			backgroundColor: activateBtnDate
+				? colors.bgItemBarEnabled
+				: colors.bgItemBarDisabled,
+			borderRadius: 4,
+		},
+		btnSec: {
+			padding: 4,
+			paddingHorizontal: 6,
+			backgroundColor: activateBtnSec
 				? colors.bgItemBarEnabled
 				: colors.bgItemBarDisabled,
 			borderRadius: 4,
 		},
 		time: {
-			color: activeBtnTime ? colors.white : colors.bgItemBarTextDisabled,
+			color: activateBtnTime ? colors.white : colors.bgItemBarTextDisabled,
 			fontSize: 16,
 			fontFamily: "FjallaOne",
 		},
 		date: {
-			color: activeBtnDate ? colors.white : colors.bgItemBarTextDisabled,
+			color: activateBtnDate ? colors.white : colors.bgItemBarTextDisabled,
+			fontSize: 16,
+			fontFamily: "FjallaOne",
+		},
+		seconds: {
+			color: activateBtnSec ? colors.white : colors.bgItemBarTextDisabled,
 			fontSize: 16,
 			fontFamily: "FjallaOne",
 		},

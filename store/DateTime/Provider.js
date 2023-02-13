@@ -5,6 +5,7 @@ const initialState = {
 	time: {
 		format: "12",
 		value: "00:00",
+		seconds: "00",
 	},
 };
 
