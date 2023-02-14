@@ -1,6 +1,6 @@
 ## 👨🏻‍💻 Project
 
--  [App](https://exp.host/@juancarlosenrique103/oh-clock). that allows you to see the current time, through a super friendly interface, as well as some functions that allow you to customize the [app](https://exp.host/@juancarlosenrique103/oh-clock).
+-  [App](https://exp.host/@juancarlosenrique103/oh-clock) that allows you to see the current time, through a super friendly interface, as well as some functions that allow you to customize the [app](https://exp.host/@juancarlosenrique103/oh-clock).
 
 ## 🖥 Technologies & Languages
 
@@ -12,7 +12,7 @@
 ## 🛠 Installing
 
 ```
-> yarn 👨🏻‍💻
+> yarn
 > yarn start
 ```
 
